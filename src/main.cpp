@@ -2699,39 +2699,39 @@ void RespawnPlayer()
 void Game_Init(void)
 {
     // --- Font ---
-    g_font_id = AEGfxCreateFont("Assets/fonts/liberation-mono.ttf", 24);
+    g_font_id = AEGfxCreateFont("../Assets/fonts/liberation-mono.ttf", 24);
     if (g_font_id < 0) g_font_id = 0;
 
     // --- World ---
-    if (!LoadWorldFromFile("Assets/map.txt"))
+    if (!LoadWorldFromFile("../Assets/map.txt"))
         GenerateWorld();
 
     // --- Boss textures ---
-    g_bossTexture = AEGfxTextureLoad("Assets/boss.png");
-    g_bRockTexture = AEGfxTextureLoad("Assets/bossrock.png");
-    g_bfireballTexture = AEGfxTextureLoad("Assets/fireball.png");
+    g_bossTexture = AEGfxTextureLoad("../Assets/boss.png");
+    g_bRockTexture = AEGfxTextureLoad("../Assets/bossrock.png");
+    g_bfireballTexture = AEGfxTextureLoad("../Assets/fireball.png");
 
     // --- Door ---
     DoorInit(safezone_y_max);
 
     // --- Textures ---
-    g_tilesetTexture = AEGfxTextureLoad("Assets/tileset.png");
-    g_oxygeniconTexture = AEGfxTextureLoad("Assets/o2icon.png");
-    g_sanityiconTexture = AEGfxTextureLoad("Assets/sanityicon.png");
-    g_bouldericonTexture = AEGfxTextureLoad("Assets/bouldericon.png");
-    g_mapiconTexture = AEGfxTextureLoad("Assets/mapicon.png");
-    g_playerTexture = AEGfxTextureLoad("Assets/player-animation-idle.png");
-    g_glowTexture = AEGfxTextureLoad("Assets/glow_texture.png");
-    g_rockTexture = AEGfxTextureLoad("Assets/mineable_rock.png");
-    g_shovelTexture = AEGfxTextureLoad("Assets/shovel.png");
-    g_shovel2Texture = AEGfxTextureLoad("Assets/shovel2.png");
-    g_shovelBannerTexture = AEGfxTextureLoad("Assets/shovel-banner.png");
-    g_shovel2BannerTexture = AEGfxTextureLoad("Assets/shovel2-banner.png");
-    g_thrownRockTexture = AEGfxTextureLoad("Assets/thrown-rock.png");
-    g_shopTriggerTexture = AEGfxTextureLoad("Assets/shop.png");
-    g_guideBannerTexture = AEGfxTextureLoad("Assets/guide_banner1.png");
-    g_shovelGuideBannerTexture = AEGfxTextureLoad("Assets/guide_banner2.png");
-    g_shovelGuideBannerTexture2 = AEGfxTextureLoad("Assets/guide_banner3.png");
+    g_tilesetTexture = AEGfxTextureLoad("../Assets/tileset.png");
+    g_oxygeniconTexture = AEGfxTextureLoad("../Assets/o2icon.png");
+    g_sanityiconTexture = AEGfxTextureLoad("../Assets/sanityicon.png");
+    g_bouldericonTexture = AEGfxTextureLoad("../Assets/bouldericon.png");
+    g_mapiconTexture = AEGfxTextureLoad("../Assets/mapicon.png");
+    g_playerTexture = AEGfxTextureLoad("../Assets/player-animation-idle.png");
+    g_glowTexture = AEGfxTextureLoad("../Assets/glow_texture.png");
+    g_rockTexture = AEGfxTextureLoad("../Assets/mineable_rock.png");
+    g_shovelTexture = AEGfxTextureLoad("../Assets/shovel.png");
+    g_shovel2Texture = AEGfxTextureLoad("../Assets/shovel2.png");
+    g_shovelBannerTexture = AEGfxTextureLoad("../Assets/shovel-banner.png");
+    g_shovel2BannerTexture = AEGfxTextureLoad("../Assets/shovel2-banner.png");
+    g_thrownRockTexture = AEGfxTextureLoad("../Assets/thrown-rock.png");
+    g_shopTriggerTexture = AEGfxTextureLoad("../Assets/shop.png");
+    g_guideBannerTexture = AEGfxTextureLoad("../Assets/guide_banner1.png");
+    g_shovelGuideBannerTexture = AEGfxTextureLoad("../Assets/guide_banner2.png");
+    g_shovelGuideBannerTexture2 = AEGfxTextureLoad("../Assets/guide_banner3.png");
 
     // --- Tile meshes ---
     g_texture_loaded = 0;
@@ -2814,10 +2814,10 @@ void Game_Init(void)
     Enemy_Init();
     LightSystem_Init();
     PlayerAnim_Init(&g_playerAnimator,
-        "Assets/player-idle-animation-spritesheet.png",
-        "Assets/player-animation-spritesheet.png",
-        "Assets/mining-animation-spritesheet.png",
-        "Assets/player-shovel-spritesheet.png",
+        "../Assets/player-idle-animation-spritesheet.png",
+        "../Assets/player-animation-spritesheet.png",
+        "../Assets/mining-animation-spritesheet.png",
+        "../Assets/player-shovel-spritesheet.png",
         0.1f, 0.5f, 1);
     PauseMenu_Load(g_font_id);
     LoseScreen_Load(g_font_id);
@@ -2829,14 +2829,14 @@ void Game_Init(void)
     last_safe_y = player_y;
 
     // --- Audio ---
-    g_miningSound = AEAudioLoadSound("Assets/mining_sound.mp3");
+    g_miningSound = AEAudioLoadSound("../Assets/mining_sound.mp3");
     g_sfxGroup = AEAudioCreateGroup();
 
-    g_bgmSound = AEAudioLoadMusic("Assets/background_sound.mp3");
+    g_bgmSound = AEAudioLoadMusic("../Assets/background_sound.mp3");
     g_bgmGroup = AEAudioCreateGroup();
     AEAudioPlay(g_bgmSound, g_bgmGroup, 0.5f, 1.0f, -1);
 
-    g_enemyZoneSound = AEAudioLoadMusic("Assets/Enemy_zone_sound.mp3");
+    g_enemyZoneSound = AEAudioLoadMusic("../Assets/Enemy_zone_sound.mp3");
     g_enemyZoneGroup = AEAudioCreateGroup();
 
     // --- Initial game state ---

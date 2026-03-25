@@ -139,8 +139,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// Changing the window title
 	AESysSetWindowTitle("Core Break");
 
-	s8 fontId = trycreatefont("Assets/Fonts/BitcountPropSingle_Cursive-Bold.ttf", 40);
-	AEGfxTexture* backgroundTexture = tryLoadTexture("Assets/MainMenu/MainmenuImg.png");
+	s8 fontId = trycreatefont("../Assets/Fonts/BitcountPropSingle_Cursive-Bold.ttf", 40);
+	AEGfxTexture* backgroundTexture = tryLoadTexture("../Assets/MainMenu/MainmenuImg.png");
 
 	if (backgroundTexture == nullptr)
 	{

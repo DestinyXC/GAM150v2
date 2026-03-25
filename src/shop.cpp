@@ -465,14 +465,14 @@ const char* GetUpgradeDescription(int page, int box_index)
 
 void Shop_Load()
 {
-    shopBackgroundTexture = AEGfxTextureLoad("Assets/shopui.png");
-    shopBackgroundTexture2 = AEGfxTextureLoad("Assets/shopui2.png");
+    shopBackgroundTexture = AEGfxTextureLoad("../Assets/shopui.png");
+    shopBackgroundTexture2 = AEGfxTextureLoad("../Assets/shopui2.png");
     shopBackgroundImageMesh = CreateShopBackgroundImageMesh(shop_popup_width, shop_popup_height);
     upgradeBoxMesh = CreateUpgradeBoxMesh(upgrade_box_width, upgrade_box_height);
     upgradeBoxBorderMesh = CreateUpgradeBoxBorderMesh(upgrade_box_width, upgrade_box_height, 3.0f);
     arrowButtonMesh = CreateArrowButtonMesh(arrow_button_width, arrow_button_height);
-    shop_font_id = AEGfxCreateFont("Assets/fonts/liberation-mono.ttf", 24);
-    shop_description_font_id = AEGfxCreateFont("Assets/fonts/liberation-mono.ttf", 40);
+    shop_font_id = AEGfxCreateFont("../Assets/fonts/liberation-mono.ttf", 24);
+    shop_description_font_id = AEGfxCreateFont("../Assets/fonts/liberation-mono.ttf", 40);
     printf("Shop state loaded!\n");
 }
 

@@ -178,7 +178,7 @@ void Enemy_Init()
     g_hpFgMesh = MakeSolidRect(1.0f, 1.0f, 0xFFDD1111);
 
     //  Load Feral texture 
-    g_feralTex = AEGfxTextureLoad("Assets/enemy_feral.png");
+    g_feralTex = AEGfxTextureLoad("../Assets/enemy_feral.png");
     if (g_feralTex)
     {
         g_feralTexMesh = MakeTexRect(ENEMY_WIDTH, ENEMY_HEIGHT);
@@ -190,7 +190,7 @@ void Enemy_Init()
     }
 
     //  Load Insane texture 
-    g_insaneTex = AEGfxTextureLoad("Assets/enemy_insane.png");
+    g_insaneTex = AEGfxTextureLoad("../Assets/enemy_insane.png");
     if (g_insaneTex)
     {
         g_insaneTexMesh = MakeTexRect(ENEMY_WIDTH, ENEMY_HEIGHT);
@@ -202,7 +202,7 @@ void Enemy_Init()
     }
 
     //  Load Mole texture 
-    g_moleTex = AEGfxTextureLoad("Assets/enemy_mole_test.png");
+    g_moleTex = AEGfxTextureLoad("../Assets/enemy_mole_test.png");
     if (g_moleTex)
     {
         g_moleTexMesh = MakeTexRect(ENEMY_WIDTH, ENEMY_HEIGHT);

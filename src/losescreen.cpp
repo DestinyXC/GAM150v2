@@ -116,10 +116,10 @@ void LoseScreen_Load(s8 font_id)
     // Load per-enemy textures
     // Expected filenames  (place your art in the Assets folder with these names):
     //   lose_feral.png   lose_insane.png   lose_mole.png
-    g_feralTex = AEGfxTextureLoad("Assets/lose_feral.png");
-    g_insaneTex = AEGfxTextureLoad("Assets/lose_insane.png");
-    g_moleTex = AEGfxTextureLoad("wAssets/lose_mole.png");
-    g_oxygenTex = AEGfxTextureLoad("Assets/oxygendeath.png");
+    g_feralTex = AEGfxTextureLoad("../Assets/lose_feral.png");
+    g_insaneTex = AEGfxTextureLoad("../Assets/lose_insane.png");
+    g_moleTex = AEGfxTextureLoad("../Assets/lose_mole.png");
+    g_oxygenTex = AEGfxTextureLoad("../Assets/oxygendeath.png");
 
     if (!g_feralTex)  printf("LoseScreen_Load: lose_feral.png not found  - will show overlay only.\n");
     if (!g_insaneTex) printf("LoseScreen_Load: lose_insane.png not found - will show overlay only.\n");
