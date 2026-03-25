@@ -2172,7 +2172,7 @@ void RenderOxygenUI(s8 g_font_id)
     AEGfxSetTransparency(1.0f);
 
     char text[64];
-    sprintf_s(text, 64, "%.0f%%", oxygen_percentage);
+    sprintf_s(text, 64, "%.0f", oxygen_percentage);
 
     AEGfxPrint(g_font_id, text, 0.16f, -0.95f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);// adjustb for location of text
 }
@@ -2615,8 +2615,8 @@ void ResetGameState()
     rocks_mined = 0;
 
     // --- Oxygen ---
-    oxygen_percentage = 100.0f;
-    oxygen_max = 100.0f;
+    oxygen_percentage = 15.0f;
+    oxygen_max = 15.0f;
     oxygen_killed_player = 0;
 
     // --- Player ---
