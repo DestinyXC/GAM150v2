@@ -2612,7 +2612,7 @@ void ResetGameState()
     // --- Stats ---
     depth = 0;
     max_depth = 0;
-    rocks_mined = 1000;
+    rocks_mined = 0;
 
     // --- Oxygen ---
     oxygen_percentage = 100.0f;
@@ -2805,8 +2805,8 @@ void Game_Init(void)
     InitializeTorches();
     InitializeRocks();
     InitializeParticles();
-    InitializeShovel(&shovel, 0.0f, -2000.0f);
-    InitializeShovel(&shovel2, 100.0f, -1900.0f);
+    InitializeShovel(&shovel, 0.0f, 0.0f);
+    InitializeShovel(&shovel2, 100.0f, 1500.0f);
 
     // --- Subsystems ---
     Player_Attack_Init();
@@ -2821,7 +2821,7 @@ void Game_Init(void)
         0.1f, 0.5f, 1);
     PauseMenu_Load(g_font_id);
     LoseScreen_Load(g_font_id);
-    InitBoss();
+    //InitBoss();
 
     // --- Player start position ---
     player_x = 0.0f;
