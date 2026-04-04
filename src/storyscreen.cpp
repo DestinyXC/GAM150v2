@@ -1,32 +1,21 @@
-// ---------------------------------------------------------------------------
-// storyscreen.cpp  -  4-panel story cutscene for Core Break
-// ---------------------------------------------------------------------------
-
 #include "storyscreen.hpp"
 #include "AEEngine.h"
 #include <stdio.h>
 #include <math.h>
 
-// ---------------------------------------------------------------------------
-// PRIVATE - state
-// ---------------------------------------------------------------------------
 
 static s8   g_font_id       = -1;
 static int  g_current_panel = 0;        // 0 .. STORY_PANEL_COUNT-1
 static float g_panel_timer  = 0.0f;    // time spent on current panel
 static int  g_done          = 0;
 
-// ---------------------------------------------------------------------------
-// PRIVATE - resources
-// ---------------------------------------------------------------------------
-
-// Full-screen textured quad (unit square scaled at draw time)
+// Full-screen textured quad
 static AEGfxVertexList* g_panelMesh = NULL;
 
 // One texture per panel
 static AEGfxTexture* g_panelTex[STORY_PANEL_COUNT] = { NULL, NULL, NULL, NULL };
 
-// Asset paths - update these to match your actual filenames
+// Assets
 static const char* PANEL_PATHS[STORY_PANEL_COUNT] = {
     "../Assets/story_panel1.png",
     "../Assets/story_panel2.png",
@@ -41,10 +30,6 @@ static const char* PANEL_PROMPTS[STORY_PANEL_COUNT] = {
     "Click or press SPACE to continue...",
     "Click or press SPACE to begin!"
 };
-
-// ---------------------------------------------------------------------------
-// PRIVATE - helpers
-// ---------------------------------------------------------------------------
 
 // Attempt to load a texture from a primary path then two fallback paths.
 static AEGfxTexture* TryLoad(const char* path)
@@ -91,9 +76,7 @@ static void DrawFullScreen(float w, float h)
     AEGfxMeshDraw(g_panelMesh, AE_GFX_MDM_TRIANGLES);
 }
 
-// ---------------------------------------------------------------------------
 // StoryScreen_Load
-// ---------------------------------------------------------------------------
 void StoryScreen_Load(s8 font_id)
 {
     g_font_id = font_id;
@@ -112,9 +95,7 @@ void StoryScreen_Load(s8 font_id)
     printf("StoryScreen_Load: complete (%d panels).\n", STORY_PANEL_COUNT);
 }
 
-// ---------------------------------------------------------------------------
 // StoryScreen_Unload
-// ---------------------------------------------------------------------------
 void StoryScreen_Unload()
 {
     if (g_panelMesh)
@@ -135,9 +116,7 @@ void StoryScreen_Unload()
     printf("StoryScreen_Unload: all resources freed.\n");
 }
 
-// ---------------------------------------------------------------------------
 // StoryScreen_Reset
-// ---------------------------------------------------------------------------
 void StoryScreen_Reset()
 {
     g_current_panel = 0;
@@ -145,9 +124,7 @@ void StoryScreen_Reset()
     g_done          = 0;
 }
 
-// ---------------------------------------------------------------------------
 // StoryScreen_Update
-// ---------------------------------------------------------------------------
 int StoryScreen_Update()
 {
     if (g_done)
@@ -156,8 +133,7 @@ int StoryScreen_Update()
     float dt = (float)AEFrameRateControllerGetFrameTime();
     g_panel_timer += dt;
 
-    // Only accept input after the panel has been visible long enough
-    // to prevent accidental instant-skipping from the menu click.
+    // Only accept input after the panel has been visible long enough to prevent accidental instant-skipping from the menu click.
     if (g_panel_timer < STORY_MIN_PANEL_TIME)
         return STORY_RESULT_NONE;
 
@@ -181,9 +157,7 @@ int StoryScreen_Update()
     return STORY_RESULT_NONE;
 }
 
-// ---------------------------------------------------------------------------
 // StoryScreen_Draw
-// ---------------------------------------------------------------------------
 void StoryScreen_Draw()
 {
     if (g_done || !g_panelMesh) return;
@@ -191,9 +165,7 @@ void StoryScreen_Draw()
     // Draw in screen space
     AEGfxSetCamPosition(0.0f, 0.0f);
 
-    // ------------------------------------------------------------------
     // 1. Panel image (full screen)
-    // ------------------------------------------------------------------
     AEGfxTexture* tex = g_panelTex[g_current_panel];
 
     if (tex)
@@ -217,9 +189,7 @@ void StoryScreen_Draw()
         DrawFullScreen(STORY_SCREEN_WIDTH, STORY_SCREEN_HEIGHT);
     }
 
-    // ------------------------------------------------------------------
     // 2. Panel counter  (top-right, e.g. "1 / 4")
-    // ------------------------------------------------------------------
     if (g_font_id >= 0)
     {
         AEGfxSetRenderMode(AE_GFX_RM_COLOR);
@@ -236,9 +206,7 @@ void StoryScreen_Draw()
                    1.0f,
                    1.0f, 1.0f, 1.0f, 0.7f);
 
-        // ------------------------------------------------------------------
         // 3. "Click to continue" prompt - fades in after STORY_MIN_PANEL_TIME
-        // ------------------------------------------------------------------
         float prompt_alpha = (g_panel_timer - STORY_MIN_PANEL_TIME) / 0.4f;
         if (prompt_alpha > 1.0f) prompt_alpha = 1.0f;
         if (prompt_alpha < 0.0f) prompt_alpha = 0.0f;
