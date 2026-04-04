@@ -7,6 +7,7 @@
 #include "shop.hpp"
 #include <string>
 #include <iostream>
+#include "storyscreen.hpp" 
 
 
 
@@ -92,6 +93,7 @@ int CheckPointInBox(float px, float py, float boxX, float boxY, float width, flo
 enum GameState
 {
 	GS_MAINMENU,
+	GS_STORY,
 	GS_GAMEPLAY,
 	GS_CREDITS,
 	GS_QUIT
@@ -140,6 +142,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	AESysSetWindowTitle("Core Break");
 
 	s8 fontId = trycreatefont("../Assets/Fonts/BitcountPropSingle_Cursive-Bold.ttf", 40);
+	StoryScreen_Load(fontId);
 	AEGfxTexture* backgroundTexture = tryLoadTexture("../Assets/MainMenu/MainmenuImg.png");
 
 	if (backgroundTexture == nullptr)
@@ -333,8 +336,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			{
 				if (playButtonHovered)
 				{
-					Game_Init();                    // load all gameplay textures/meshes
-					currentState = GS_GAMEPLAY;
+					StoryScreen_Reset();            
+					currentState = GS_STORY;
 				}
 				else if (exitButtonHovered)
 				{
@@ -596,6 +599,18 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 				AEGfxPrint(fontId, strBuffer, -0.22f, -0.77f, 1.6f, 0.0f, 0.0f, 0.0f, 1.0f); // Normal
 			}
 		}
+		// ============== STORY STATE ==============
+		else if (currentState == GS_STORY)
+		{
+			int result = StoryScreen_Update();
+			StoryScreen_Draw();
+
+			if (result == STORY_RESULT_DONE)
+			{
+				Game_Init();                    // load all gameplay resources
+				currentState = GS_GAMEPLAY;
+			}
+		}
 		// ============== GAMEPLAY STATE ==============
 		else if (currentState == GS_GAMEPLAY)
 		{
@@ -662,6 +677,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 
 	// Free the system
+	StoryScreen_Unload();
 	AEGfxDestroyFont(fontId);
 	AEGfxMeshFree(buttonMesh);
 	AEGfxMeshFree(buttonHoverMesh);

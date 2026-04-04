@@ -107,6 +107,7 @@ xcopy "$(SolutionDir)Extern\AlphaEngine\lib\fmod.dll" "$(OutDir)" /s /r /y /q</C
     <ClCompile Include="..\src\pausemenu.cpp" />
     <ClCompile Include="..\src\player.cpp" />
     <ClCompile Include="..\src\shop.cpp" />
+    <ClCompile Include="..\src\storyscreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\animation.hpp" />
@@ -119,6 +120,7 @@ xcopy "$(SolutionDir)Extern\AlphaEngine\lib\fmod.dll" "$(OutDir)" /s /r /y /q</C
     <ClInclude Include="..\src\pausemenu.hpp" />
     <ClInclude Include="..\src\player.hpp" />
     <ClInclude Include="..\src\shop.hpp" />
+    <ClInclude Include="..\src\storyscreen.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
